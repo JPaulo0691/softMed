@@ -1,32 +1,15 @@
 package com.softmed.api.consulta;
 
-import com.softmed.api.enums.Especialidade;
+import com.softmed.api.medico.DadosCadastroMedico;
+import com.softmed.api.pacientes.CadastroPacientes;
 
 public record RealizarConsultaDTO(
 		
-		String  nomeMedico,
-		String  crm,
-		Boolean medicoAtivo,
-		Especialidade Especialidade,
-		String nomePaciente,
-		String cpf,
-		String email,
-		Boolean pacienteAtivo
+		DadosCadastroMedico medico,
+		CadastroPacientes paciente
+		
 		
 ) {
 	
-	public RealizarConsultaDTO(ConsultaMedica consulta){
-		this(consulta.getMedico().getNome(),
-			 consulta.getMedico().getCrm(),
-			 consulta.getMedico().getAtivo(),
-			 consulta.getMedico().getEspecialidade(),
-			 consulta.getPaciente().getNome(),
-			 consulta.getPaciente().getCpf(),
-			 consulta.getPaciente().getEmail(),
-			 consulta.getPaciente().getAtivo()
-		    
-		);
-		
-	}
-
+	
 }

@@ -20,7 +20,7 @@ public class ConsultaController {
 	@PostMapping
 	public ConsultaMedica gerarConsulta(@RequestBody RealizarConsultaDTO consulta){
 		
-		return null;
+		return consultaService.criarConsulta(consulta);
 	}
 
 }

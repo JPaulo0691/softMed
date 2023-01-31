@@ -13,6 +13,8 @@ import com.softmed.api.medico.Medico;
 public interface MedicoRepository extends JpaRepository<Medico, Long>{
 	
 	Optional<Medico> findByCrm(String crm);
+	
+	Optional<Medico> findByCrmAndAtivo(String crm, boolean ativo);
 
 	Page<Medico> findAllByAtivoTrue(Pageable paginacao);
 }

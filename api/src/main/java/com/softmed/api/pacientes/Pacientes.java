@@ -46,9 +46,6 @@ public class Pacientes {
 	
 	private Boolean ativo;
 	
-	@OneToOne
-	private ConsultaMedica consulta;
-	
 	@Embedded
 	private Endereco endereco;
 	
