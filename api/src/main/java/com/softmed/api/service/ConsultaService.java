@@ -1,8 +1,11 @@
 package com.softmed.api.service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +32,10 @@ public class ConsultaService {
 	ConsultaRepository consultaRepository;
 	
 	@Transactional
-    public ConsultaMedica criarConsulta(RealizarConsultaDTO consulta) throws IllegalAccessException {
+    public ConsultaMedica criarConsulta(RealizarConsultaDTO consulta) throws IllegalArgumentException {
 		
+		System.out.println("AQUIIIIIIIIIIIIIII");
+		System.out.println(consulta.medico());
 		
 		Optional<Medico> medico = medicoRepository.findByCrm(consulta.medico().crm());
 		
@@ -41,24 +46,31 @@ public class ConsultaService {
 		if(medico.isEmpty() || paciente.isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		else {		
-			
-			if(consultaMedica.getMedico().getAtivo() != true || consultaMedica.getPaciente().getAtivo() != true) {
-				throw new IllegalAccessException("Não é permitido realizar uma consulta, médico ou paciente inativo");
+		else {	
+					
+			if(  LocalDate.now().getDayOfWeek().getValue() >= 1 //Segunda
+			   & LocalDate.now().getDayOfWeek().getValue() <= 6 // Sábado
+			   & LocalTime.now().getHour() <= 19
+			   & LocalTime.now().getHour() >= 7) {
+				
+					consultaMedica.setMedico(medico.get());
+					consultaMedica.setPaciente(paciente.get());
+			    	
+			    	return consultaRepository.save(consultaMedica);
+					
 			}
 			else {
-				consultaMedica.setMedico(medico.get());
-				consultaMedica.setPaciente(paciente.get());
-		    	
-		    	return consultaRepository.save(consultaMedica);
+				throw new IllegalArgumentException("Não é possível cadastrar uma consulta. Hora da consulta das 7 as 19.");
 			}
 			
-		}		
+		}
 		
 	}
 	
-	public void horarioFuncionamento(ConsultaMedica data, ConsultaMedica hora) {
-		
-		
-	}
 }
+
+//Problemas com Serializer
+//if(     consultaMedica.getDtConsulta().getDayOfWeek().getValue() >= 1 
+//	   & consultaMedica.getDtConsulta().getDayOfWeek().getValue() >= 6 
+//	   & consultaMedica.getHoraConsulta().getHour() <= 23
+//	   & consultaMedica.getHoraConsulta().getHour() >= 7) {

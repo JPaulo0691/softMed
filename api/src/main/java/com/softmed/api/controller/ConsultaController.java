@@ -18,7 +18,7 @@ public class ConsultaController {
 	private ConsultaService consultaService;
 	
 	@PostMapping
-	public ConsultaMedica gerarConsulta(@RequestBody RealizarConsultaDTO consulta){
+	public ConsultaMedica gerarConsulta(@RequestBody RealizarConsultaDTO consulta) throws IllegalArgumentException {
 		
 		return consultaService.criarConsulta(consulta);
 	}

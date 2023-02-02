@@ -3,6 +3,7 @@ package com.softmed.api.consulta;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.softmed.api.medico.Medico;
 import com.softmed.api.pacientes.Pacientes;
 
@@ -28,10 +29,12 @@ public class ConsultaMedica {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idConsulta;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "ID_PACIENTE")
 	private Pacientes paciente;
 	
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Medico medico;
 	

@@ -3,6 +3,7 @@ package com.softmed.api.medico;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.softmed.api.consulta.ConsultaMedica;
 import com.softmed.api.endereco.Endereco;
 import com.softmed.api.enums.Especialidade;
@@ -46,6 +47,7 @@ public class Medico {
 	@Embedded
 	private Endereco endereco;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "medico",  fetch = FetchType.LAZY)
 	private List<ConsultaMedica> listaConsulta;	
 	
