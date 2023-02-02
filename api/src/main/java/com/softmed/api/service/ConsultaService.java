@@ -34,10 +34,7 @@ public class ConsultaService {
 	@Transactional
     public ConsultaMedica criarConsulta(RealizarConsultaDTO consulta) throws IllegalArgumentException {
 		
-		System.out.println("AQUIIIIIIIIIIIIIII");
-		System.out.println(consulta.medico());
-		
-		Optional<Medico> medico = medicoRepository.findByCrm(consulta.medico().crm());
+		Optional<Medico> medico = medicoRepository.findByCrm(consulta.medico().crm()); 
 		
 		Optional<Pacientes> paciente = pacienteRepository.findByCpf(consulta.paciente().cpf());
 		
@@ -61,16 +58,7 @@ public class ConsultaService {
 			}
 			else {
 				throw new IllegalArgumentException("Não é possível cadastrar uma consulta. Hora da consulta das 7 as 19.");
-			}
-			
-		}
-		
-	}
-	
+			}	
+		}	
+	}	
 }
-
-//Problemas com Serializer
-//if(     consultaMedica.getDtConsulta().getDayOfWeek().getValue() >= 1 
-//	   & consultaMedica.getDtConsulta().getDayOfWeek().getValue() >= 6 
-//	   & consultaMedica.getHoraConsulta().getHour() <= 23
-//	   & consultaMedica.getHoraConsulta().getHour() >= 7) {
