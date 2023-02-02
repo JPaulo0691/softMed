@@ -48,7 +48,7 @@ public class ConsultaService {
 		}
 		else {	
 					
-			if(  LocalDate.now().getDayOfWeek().getValue() >= 1 //Segunda
+			if(  LocalDate.now().getDayOfWeek().getValue() >= 0 //Segunda
 			   & LocalDate.now().getDayOfWeek().getValue() <= 6 // Sábado
 			   & LocalTime.now().getHour() <= 19
 			   & LocalTime.now().getHour() >= 7) {
