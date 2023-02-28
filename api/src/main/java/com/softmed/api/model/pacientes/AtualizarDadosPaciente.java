@@ -1,6 +1,6 @@
-package com.softmed.api.pacientes;
+package com.softmed.api.model.pacientes;
 
-import com.softmed.api.endereco.DadosEndereco;
+import com.softmed.api.model.enderecos.DadosEndereco;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

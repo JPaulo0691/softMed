@@ -1,12 +1,12 @@
-package com.softmed.api.medico;
+package com.softmed.api.model.medico;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.softmed.api.consulta.ConsultaMedica;
-import com.softmed.api.endereco.Endereco;
 import com.softmed.api.enums.Especialidade;
+import com.softmed.api.model.consulta.ConsultaMedica;
+import com.softmed.api.model.enderecos.Endereco;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
@@ -32,7 +32,7 @@ import lombok.NoArgsConstructor;
 public class Medico {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private String nome;
 	private String email;
@@ -46,10 +46,6 @@ public class Medico {
 	
 	@Embedded
 	private Endereco endereco;
-	
-	@JsonManagedReference
-	@OneToMany(mappedBy = "medico",  fetch = FetchType.LAZY)
-	private List<ConsultaMedica> listaConsulta;	
 	
     public Medico(DadosCadastroMedico dadosCadastro) {
     	this.ativo = true;

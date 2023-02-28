@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.softmed.api.pacientes.AtualizarDadosPaciente;
-import com.softmed.api.pacientes.CadastroPacientes;
-import com.softmed.api.pacientes.ListaPacienteDTO;
-import com.softmed.api.pacientes.Pacientes;
+import com.softmed.api.model.pacientes.AtualizarDadosPaciente;
+import com.softmed.api.model.pacientes.CadastroPacientes;
+import com.softmed.api.model.pacientes.ListaPacienteDTO;
+import com.softmed.api.model.pacientes.Pacientes;
 import com.softmed.api.service.PacienteService;
 
 import jakarta.validation.Valid;

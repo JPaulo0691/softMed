@@ -1,4 +1,4 @@
-package com.softmed.api.pacientes;
+package com.softmed.api.model.pacientes;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

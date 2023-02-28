@@ -7,8 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.softmed.api.pacientes.ListaPacienteDTO;
-import com.softmed.api.pacientes.Pacientes;
+import com.softmed.api.model.pacientes.ListaPacienteDTO;
+import com.softmed.api.model.pacientes.Pacientes;
 import com.softmed.api.repository.PacienteRepository;
 
 import jakarta.transaction.Transactional;

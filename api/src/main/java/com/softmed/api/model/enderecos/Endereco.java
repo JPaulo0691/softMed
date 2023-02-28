@@ -1,4 +1,4 @@
-package com.softmed.api.endereco;
+package com.softmed.api.model.enderecos;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

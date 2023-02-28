@@ -1,7 +1,7 @@
-package com.softmed.api.medico;
+package com.softmed.api.model.medico;
 
-import com.softmed.api.endereco.DadosEndereco;
-import com.softmed.api.endereco.Endereco;
+import com.softmed.api.model.enderecos.DadosEndereco;
+import com.softmed.api.model.enderecos.Endereco;
 
 import jakarta.validation.constraints.NotBlank;
 

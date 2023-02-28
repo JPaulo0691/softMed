@@ -8,9 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.softmed.api.medico.DadosMedico;
-import com.softmed.api.medico.Medico;
-import com.softmed.api.medico.RelatorioDTO;
+import com.softmed.api.model.medico.DadosMedico;
+import com.softmed.api.model.medico.Medico;
+import com.softmed.api.model.medico.RelatorioDTO;
 import com.softmed.api.repository.MedicoRepository;
 
 import jakarta.transaction.Transactional;

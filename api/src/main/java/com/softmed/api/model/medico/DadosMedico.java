@@ -1,4 +1,4 @@
-package com.softmed.api.medico;
+package com.softmed.api.model.medico;
 
 import com.softmed.api.enums.Especialidade;
 

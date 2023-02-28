@@ -1,8 +1,8 @@
-package com.softmed.api.pacientes;
+package com.softmed.api.model.pacientes;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.softmed.api.endereco.Endereco;
+import com.softmed.api.model.enderecos.Endereco;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
