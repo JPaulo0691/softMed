@@ -87,7 +87,7 @@ public class ConsultaService {
 		}
 		System.out.println("METODO ESOLHER MÉDICO");
 		System.out.println("AGENDA CONSULTA DATA: " + agendaConsulta.data() + " ESPECIALIDADE: " + agendaConsulta.especialidade());
-		return medicoRepository.escolherMedicoLivreNaData(agendaConsulta.especialidade(), agendaConsulta.data());
+		return medicoRepository.escolherMedicoLivreNaData(agendaConsulta.especialidade().toString(), agendaConsulta.data());
 	}
 	
 }

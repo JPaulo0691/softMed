@@ -30,11 +30,11 @@ public interface MedicoRepository extends JpaRepository<Medico, Long>{
 			+ "  AND M.ID NOT IN (\r\n"
 			+ "      SELECT CONS.ID_MEDICO \r\n"
 			+ "        FROM CONSULTA_MEDICA CONS \r\n"
-			+ "       WHERE CONS.DT_CONSULTA = TO_DATE(:dtConsulta, 'YYYY-MM-DD HH24:MI:SS')\r\n"
+			+ "       WHERE CONS.DT_CONSULTA = :dtConsulta\r\n"
 			+ "  )\r\n"
 			+ "  ORDER BY DBMS_RANDOM.RANDOM \r\n"
 			+ "  FETCH FIRST 1 ROWS ONLY", nativeQuery = true)
-	Medico escolherMedicoLivreNaData(@Param("especialidade")Especialidade especialidade,
+	Medico escolherMedicoLivreNaData(@Param("especialidade")String especialidade,
 			                        @Param("dtConsulta")LocalDateTime dtConsulta);
 	
 	@Query(value = "select M.ATIVO \r\n"
