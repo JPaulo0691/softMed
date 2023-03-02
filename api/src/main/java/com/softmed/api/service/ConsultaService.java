@@ -1,12 +1,19 @@
 package com.softmed.api.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Service;
 
 import com.softmed.api.exceptions.ValidacaoConsultaException;
+import com.softmed.api.model.consulta.ConsultaDiariaDetalhamentoDTO;
 import com.softmed.api.model.consulta.ConsultaMedica;
 import com.softmed.api.model.consulta.DadosAgendamentoConsulta;
 import com.softmed.api.model.consulta.DadosDetalhamentoConsulta;
@@ -27,6 +34,7 @@ public class ConsultaService {
 	
 	@Autowired
 	ConsultaRepository consultaRepository;
+	
 	
 	@Autowired
 	private List<ValidadorConsultas> validadores; // O spring inicializará a lista de validadores
@@ -54,16 +62,8 @@ public class ConsultaService {
 		validadores.forEach(validar -> validar.validar(agendaConsulta));
 		
 		var paciente = pacienteRepository.findById(agendaConsulta.idPaciente()).get(); // aqui eu pego o objeto pelo id, usando o repository
-		System.out.println(paciente);
-		System.out.println("METODO agendarConsulta");
-		System.out.println("AGENDA CONSULTA DATA: " + agendaConsulta.data() + " ESPECIALIDADE: " + agendaConsulta.especialidade());
+		
 		var medico = escolherMedico(agendaConsulta);
-		
-		System.out.println();	
-		
-		System.out.println("MEDICO: " + medico);
-		System.out.println();
-		System.out.println("AGENDA: " + agendaConsulta);
 		
 		if (medico == null) {
             throw new ValidacaoConsultaException("Não existe médico disponível nessa data!");
@@ -85,9 +85,17 @@ public class ConsultaService {
 		if(agendaConsulta.especialidade() == null) {
 			throw new ValidacaoConsultaException("Especialidade é obrigatória quando o médico não for escolhido.");
 		}
-		System.out.println("METODO ESOLHER MÉDICO");
-		System.out.println("AGENDA CONSULTA DATA: " + agendaConsulta.data() + " ESPECIALIDADE: " + agendaConsulta.especialidade());
+		
 		return medicoRepository.escolherMedicoLivreNaData(agendaConsulta.especialidade().toString(), agendaConsulta.data());
+	}
+	
+	
+	public Page<ConsultaDiariaDetalhamentoDTO> relatorioDeConsultas(Pageable paginacao
+			                                                       ,@DateTimeFormat(iso = ISO.DATE_TIME)LocalDateTime dataInicial
+			                                                       ,@DateTimeFormat(iso = ISO.DATE_TIME) LocalDateTime dataFinal){
+		
+		return consultaRepository.findAllByDtConsultaBetween(paginacao,dataInicial, dataFinal)
+				                 .map(ConsultaDiariaDetalhamentoDTO::new);
 	}
 	
 }
